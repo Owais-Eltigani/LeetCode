@@ -6,14 +6,15 @@ const str = String(prompt());
 
 const arr = str.split(' ');
 
-let i = 0;
+const stack = [];
 
-while (arr.length > 1) {
+for (let i = 0; i < arr.length; i++) {
   if (['+', '-', '*', '/'].some(elt => elt === arr[i])) {
     //
-    const num1 = Number(arr.shift());
-    const num2 = Number(arr.shift());
-    const op = arr.shift();
+    const num2 = Number(stack.pop());
+    const num1 = Number(stack.pop());
+
+    const op = arr[i];
 
     let result;
 
@@ -35,10 +36,10 @@ while (arr.length > 1) {
         break;
     }
 
-    arr.unshift(result);
-    i = 0;
+    stack.push(Math.trunc(result));
+  } else {
+    stack.push(arr[i]);
   }
-  i++;
 }
 
-console.log(arr[0]);
+console.log(stack[0]);
