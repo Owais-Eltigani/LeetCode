@@ -22,13 +22,32 @@ function genratePara(stack, open, closed, limit, result = []) {
   return result;
 }
 
+function solve2(stack, open, closed, limit, result = []) {
+  if (stack.length == limit * 2) {
+    result.push(stack);
+    return result;
+  }
+
+  if (open < limit) {
+    // stack.push('(');
+    solve2(stack + '(', open + 1, closed, limit, result);
+  }
+
+  if (closed < open) {
+    // stack.push(')');
+    solve2(stack + ')', open, closed + 1, limit, result);
+  }
+
+  return result;
+}
+
 // ------------------- *** -------------------
 
 let n = Number(prompt());
 
 const stack = [];
 
-const result = genratePara(stack, 0, 0, n);
+const result = solve2(stack, 0, 0, n);
 
 console.log(result);
-console.log(result.length);
+// console.log(result.length);
