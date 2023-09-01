@@ -10,13 +10,13 @@ function genratePara(stack, open, closed, limit, result = []) {
   if (open < limit) {
     stack.push('(');
     result = genratePara(stack, open + 1, closed, limit, result);
-    // stack.pop();
+    stack.pop();
   }
 
   if (closed < open) {
     stack.push(')');
     result = genratePara(stack, open, closed + 1, limit, result);
-    // stack.pop();
+    stack.pop();
   }
 
   return result;
