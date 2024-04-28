@@ -23,4 +23,15 @@ def solution2(nums):
     return len(nums) != len(set(nums))
 
 
+def solution3(nums):
+    """this makes use of the sort function to sort the numbers and check if the number is equal to the previous number"""
+    nums.sort()
+
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i - 1]:
+            return True
+
+    return False
+
+
 print(solution2(nums))
