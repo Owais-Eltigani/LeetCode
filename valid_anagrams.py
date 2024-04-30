@@ -2,6 +2,8 @@
 
 
 def check(str1, str2):
+    """O(n)"""
+
     if len(str1):
         if str1[0] == str2[0]:
             return check(str1[1:], str2[1:])
@@ -12,6 +14,8 @@ def check(str1, str2):
 
 
 def valid_anagram(str1, str2):
+    """O(nlogn * n) the time complexity is a bit worse beacuse we sort both list O(nlogn * 2) then we check the if they are equal in O(n)"""
+
     if len(str1) != len(str2):
         return False
 
@@ -22,6 +26,8 @@ def valid_anagram(str1, str2):
 
 
 def valid_anagram2(str1, str2):
+    """O(nlogn) because of sorting but still faster"""
+
     if len(str1) != len(str2):
         return False
 

@@ -1,4 +1,5 @@
-""" to solve leetcode problem contain duplicate numbers 
+""" 
+to solve leetcode problem contain duplicate numbers 
 the statement of the problem is:
 Given an array of integers, find if the array contains any duplicates.
 """
@@ -7,7 +8,12 @@ nums = list(map(int, input().split()))
 
 
 def con_dup1(nums):
-    """this makes use of a dictionary to store the numbers and check if the number is already in the dictionary"""
+    """
+    this makes use of a dictionary to store the numbers
+    and check if the number is already in the dictionary
+    O(n)
+    """
+
     dict = {}
 
     for num in nums:
