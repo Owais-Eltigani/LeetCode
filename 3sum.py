@@ -1,25 +1,20 @@
 """ test """
 
 
-def two_sum(nums, index, start, end):
+def two_sum(nums, index, start, dict):
 
-    if start >= end:
+    if start >= len(nums) - 1:
         return []
 
     if index == start:
-        return two_sum(nums, index, start + 1, end)
+        return two_sum(nums, index, start + 1, dict)
 
-    if index == end:
-        return two_sum(nums, index, start, end - 1)
+    c = (nums[index] + nums[start]) * -1
 
-    if nums[index] + nums[start] + nums[end] == 0:
-        return [nums[index], nums[start], nums[end]].sort()
+    if nums[index] + nums[start] + c == 0 and c in dict:
+        return [nums[index], nums[start], c]
 
-    if nums[index] + nums[start] + nums[end] < 0:
-        return two_sum(nums, index, start + 1, end)
-
-    if nums[index] + nums[start] + nums[end] > 0:
-        return two_sum(nums, index, start, end - 1)
+    return two_sum(nums, index, start + 1, dict)
 
 
 def solve2(nums):
@@ -27,9 +22,11 @@ def solve2(nums):
 
     nums.sort()
     result = []
+    dict = {num: 0 for num in nums}
 
     for i in range(len(nums) - 1):
-        res = two_sum(nums, i, 0, len(nums) - 1)
+        res = two_sum(nums, i, 0, dict)
+        res.sort()
 
         if res and res not in result:
             result.append(res)
